@@ -4,7 +4,7 @@ from models.model import load_model
 from transformers import Trainer ,TrainingArguments
 
     
-def train_model(pretrained_model, train_path, test_path, output_dir):
+def train_model(pretrained_model: str, train_path: str, test_path: str, output_dir: str):
     model, tokenizer = load_model(pretrained_model)
     dataset = load_and_preprocess_data(train_path, test_path, tokenizer)
     
@@ -35,4 +35,3 @@ def train_model(pretrained_model, train_path, test_path, output_dir):
     return model
 
 
-print(501)
