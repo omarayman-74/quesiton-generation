@@ -8,6 +8,7 @@ def train_model(pretrained_model: str, train_path: str, test_path: str, output_d
     model, tokenizer = load_model(pretrained_model)
     dataset = load_and_preprocess_data(train_path, test_path, tokenizer)
     
+    #reformat columns for pytorch
     train_dataset = dataset["train"].remove_columns(["context", "questions"]).set_format(type='torch')
     val_dataset = dataset["validation"].set_format(type='torch')
 
