@@ -1,5 +1,5 @@
 def run_question_generation_model(input_text: str, model: str, tokenizer):
-    # Prepare the input string for the model by appending a task-specific prefix and ending token.
+    """ Prepare the input string for the model by appending a task-specific prefix and ending token."""
     input_string = "generate a mcq question: " + input_text + " </s>"
     # Tokenize the input string and move to GPU.
     input_ids = tokenizer.encode(input_string, return_tensors="pt").to('cuda')

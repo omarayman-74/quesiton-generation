@@ -5,7 +5,7 @@ from transformers import Trainer ,TrainingArguments
 
     
 def train_model(pretrained_model: str, train_path: str, test_path: str, output_dir: str):
-    # Load model and tokenizer.
+    """Load model and tokenizer."""
     model, tokenizer = load_model(pretrained_model)
     # Load and process the dataset.
     dataset = load_and_preprocess_data(train_path, test_path, tokenizer)

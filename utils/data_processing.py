@@ -4,13 +4,14 @@ from datasets import load_dataset
 from transformers import T5TokenizerFast
 
 def prepare_quesition_format(data: Dict[str, str]):
-    # Format sentence to be fit the model. 
+    """Format sentence to fit the model."""
     data['context'] = "generate a mcq question: " + data['context'] + " </s>"
     return data
 
 
 def convert_to_features(example_batch: Dict[str, list], tokenizer, max_input_length: int, max_target_length: int) :
-    # Tokenize and format the sentence by truncate , padding and adding a special token to input of model.
+    """"Tokenize input and oupu of the model."""
+    # Tokenize and format the context by truncate , padding and adding a special token to input of model.
     input_encodings = tokenizer.batch_encode_plus(
         example_batch['context'],
         max_length=max_input_length,
@@ -35,7 +36,7 @@ def convert_to_features(example_batch: Dict[str, list], tokenizer, max_input_len
     }
 
 def load_and_preprocess_data(train_path: str, test_path: str, tokenizer):
-    # Applying functions on whole data set 
+    """Applying functions on whole data set."""
     # Load dataset.
     question_generation_dataset = load_dataset('csv', data_files={'train': train_path, 'validation': test_path})
     # Apply formatting function to context data to make it suitable for model input.
